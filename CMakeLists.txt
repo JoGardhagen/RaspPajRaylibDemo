@@ -3,9 +3,8 @@ project(RaspPajRaylibDemo)
 
 set(CMAKE_C_STANDARD 11)
 set(CMAKE_CXX_STANDARD 17)
-set(CMAKE_POSITION_INDEPENDENT_CODE ON)
 
-# Hämta Raylib via FetchContent
+# Fetch Raylib
 include(FetchContent)
 FetchContent_Declare(
     raylib
@@ -15,18 +14,22 @@ FetchContent_Declare(
 set(RAYLIB_BUILD_SHARED OFF CACHE BOOL "Build Raylib as a static library")
 FetchContent_MakeAvailable(raylib)
 
+# Platform-specifika flaggor
+if(CMAKE_SYSTEM_NAME STREQUAL "Linux")
+    message(STATUS "Bygger för Raspberry Pi")
+    set(CMAKE_C_FLAGS "${CMAKE_C_FLAGS} -DPLATFORM_RPI")
+    set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -DPLATFORM_RPI")
+elseif(APPLE)
+    message(STATUS "Bygger för Mac")
+    set(CMAKE_C_FLAGS "${CMAKE_C_FLAGS} -DPLATFORM_DESKTOP")
+    set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -DPLATFORM_DESKTOP")
+endif()
+
 # Skapa exekverbar fil
 add_executable(RaspPajRaylibDemo main.cpp)
 
 # Länka Raylib
 target_link_libraries(RaspPajRaylibDemo PRIVATE raylib)
-target_include_directories(RaspPajRaylibDemo PRIVATE ${raylib_SOURCE_DIR}/src)
 
-# Plattform-specifika definieringar
-if(CMAKE_SYSTEM_NAME STREQUAL "Linux")
-    message(STATUS "Bygger för Raspberry Pi")
-    target_compile_definitions(RaspPajRaylibDemo PRIVATE PLATFORM_RPI)
-elseif(APPLE)
-    message(STATUS "Bygger för Mac")
-    target_compile_definitions(RaspPajRaylibDemo PRIVATE PLATFORM_DESKTOP)
-endif()
+# Inkludera Raylibs header
+target_include_directories(RaspPajRaylibDemo PRIVATE ${raylib_SOURCE_DIR}/src)
