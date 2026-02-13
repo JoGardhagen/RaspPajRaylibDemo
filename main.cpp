@@ -1,12 +1,13 @@
 #include "raylib.h"
 
 int main() {
-    InitWindow(800, 600, "Pi 5 GLES Test");
+    InitWindow(800, 600, "Testfönster på Raspberry Pi eller Mac");
+    SetTargetFPS(60);
 
     while (!WindowShouldClose()) {
         BeginDrawing();
         ClearBackground(RAYWHITE);
-        DrawText("Hej Raspberry Pi 5!", 100, 300, 20, LIGHTGRAY);
+        DrawText("Hej, Raylib fungerar!", 190, 200, 20, LIGHTGRAY);
         EndDrawing();
     }
 
