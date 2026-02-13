@@ -1,12 +1,12 @@
 #include "raylib.h"
 
 int main() {
-    InitWindow(800, 600, "Test Pi 5 Desktop");  // Skapa fönster
+    InitWindow(800, 600, "Pi 5 GLES Test");
 
     while (!WindowShouldClose()) {
         BeginDrawing();
         ClearBackground(RAYWHITE);
-        DrawText("Hej Pi 5 Desktop!", 200, 300, 20, LIGHTGRAY);
+        DrawText("Hej Raspberry Pi 5!", 100, 300, 20, LIGHTGRAY);
         EndDrawing();
     }
 
