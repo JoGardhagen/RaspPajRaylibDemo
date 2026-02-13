@@ -1,0 +1,25 @@
+# Byggmappar
+/build/
+/cmake-build-*/
+
+# Exekverbara filer
+*.exe
+*.out
+RaspPajRaylibDemo
+
+# Objektfiler och temporära filer
+*.o
+*.obj
+*.so
+*.a
+*.dylib
+
+# IDE-specifikt
+.vscode/
+*.code-workspace
+
+# Mac-specifikt
+.DS_Store
+
+# FetchContent / externa bibliotek kan byggas på varje maskin, så vi ignorerar dessa
+raylib/build/
