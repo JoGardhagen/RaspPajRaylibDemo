@@ -16,9 +16,9 @@ FetchContent_MakeAvailable(raylib)
 
 # Platform-specifika flaggor
 if(CMAKE_SYSTEM_NAME STREQUAL "Linux")
-    message(STATUS "Bygger för Raspberry Pi")
-    set(CMAKE_C_FLAGS "${CMAKE_C_FLAGS} -DPLATFORM_RPI")
-    set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -DPLATFORM_RPI")
+    message(STATUS "Bygger för Linux (Pi 5)")
+    set(CMAKE_C_FLAGS "${CMAKE_C_FLAGS} -DPLATFORM_DESKTOP")
+    set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -DPLATFORM_DESKTOP")
 elseif(APPLE)
     message(STATUS "Bygger för Mac")
     set(CMAKE_C_FLAGS "${CMAKE_C_FLAGS} -DPLATFORM_DESKTOP")
